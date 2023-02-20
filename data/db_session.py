@@ -16,7 +16,7 @@ def global_init(config):
 
     connection_string = f"{config['drivername']}://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['database']}"
 
-    engine = sa.create_engine(connection_string, echo=False)
+    engine = sa.create_engine(connection_string, echo=False, connect_args={'connect_timeout': 10})
     __factory = orm.sessionmaker(bind=engine)
 
     from . import __all_models

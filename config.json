@@ -4,5 +4,26 @@
     "port": "5432",
     "host": "localhost",
     "database": "ulstu-timetable-telegram"
+  },
+  "semesters_config": {
+    "autumn": {
+      "start_date": "29.08.2022"
+    },
+    "spring": {
+      "start_date": "30.01.2023"
+    }
+  },
+  "promotion_config": {
+    "telegram_bot_link": "t.me/ulstutimebot"
+  },
+  "images_config": {
+    "folder": "timetable_images"
+  },
+  "timetables_config": {
+    "actual_period": "01:00:00"
+  },
+  "auto_dark_theme_config": {
+    "begin": "23:00:00",
+    "end": "06:00:00"
   }
 }

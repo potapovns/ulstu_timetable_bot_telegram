@@ -16,7 +16,7 @@ API_TIMETABLE_SECRET_KEY = os.getenv("API_TIMETABLE_SECRET_KEY")
 
 def extract_dict_weeks_from_json(response_json):
     weeks = response_json['response']['weeks']
-    for key, value in weeks.items():
+    for key, value in list(weeks.items()):
         weeks[int(key) + 1] = value
     return weeks
 
@@ -31,3 +31,10 @@ def get_groups_names_dict():
         for user_group_name in splitted_groups:
             groups_dict[user_group_name] = db_group_name
     return groups_dict
+
+
+async def get_group_timetable(group_name):
+    response = requests.get(URL_API + "/" + group_name, headers={"auth": API_TIMETABLE_SECRET_KEY})
+    response_json = response.json()
+    weeks_json = extract_dict_weeks_from_json(response_json)
+    return weeks_json

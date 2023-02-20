@@ -36,6 +36,7 @@ def db_groups_add_new(groups_dict):
         if db_group_name not in db_groups_all_names:
             new_group = Group()
             new_group.name = db_group_name
+            new_group.name_lower = db_group_name.lower()
             db_sess.add(new_group)
             log.debug(f"New group added: {new_group}")
     db_sess.commit()

@@ -10,6 +10,6 @@ class Image(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     theme = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     filename = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
-    timetable_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("timetables.id"))
+    timetable_id = sqlalchemy.Column(sqlalchemy.Integer,
+                                     sqlalchemy.ForeignKey("timetables.id", ondelete="CASCADE"))
     timetable = orm.relationship('Timetable', back_populates="images")

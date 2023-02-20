@@ -12,7 +12,8 @@ async def get_db_user(api_user_id: int, db_sess):
 
 
 async def get_db_group(group_name: str, db_sess):
-    db_group = db_sess.query(Group).filter(Group.name == group_name).first()
+    group_name_lower = group_name.lower()
+    db_group = db_sess.query(Group).filter(Group.name_lower == group_name_lower).first()
     if db_group is None:
         log.debug(f"DB group not found by group_name:[{group_name}]")
     else:

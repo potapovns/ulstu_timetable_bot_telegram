@@ -9,9 +9,8 @@ class Group(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
+    name_lower = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     users = orm.relationship("User", back_populates="group")
-
     timetables = orm.relationship("Timetable", back_populates='group')
 
     def __repr__(self):
