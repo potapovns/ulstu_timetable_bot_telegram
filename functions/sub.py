@@ -174,7 +174,8 @@ async def try_get_group_timetable_image_for_week(db_sess, db_user: User, week_nu
             tw,
             tb,
             inverted=True if target_theme == timetable_themes.TimetableThemes.DARK else False,
-            text_promotion=config["promotion_config"]["telegram_bot_link"]
+            text_promotion=config["promotion_config"]["telegram_bot_link"],
+            resolution=(1280, 720)
         )
         week_text = "CURRENT" if current_week else "NEXT"
         img_filename = f"timetable_{db_group.name}_{week_text}_{target_theme}.png"
