@@ -1,9 +1,10 @@
-import datetime
 import os.path
-from enum import Enum
-
 import env
-import credentials
+
+try:
+    import credentials
+except ImportError:
+    log.warning("Credentials file not found! Please set credentials environ manually.")
 from keyboards import *
 
 from telegram import Update
@@ -17,8 +18,6 @@ from functions.db_processing import *
 from functions import (
     configuration,
     database,
-    logger,
-    roles,
     sub
 )
 

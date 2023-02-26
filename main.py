@@ -2,7 +2,7 @@ import os
 
 import env
 import handlers
-import credentials
+from loguru import logger as log
 
 from functions import (
     database,
@@ -17,14 +17,17 @@ from telegram.ext import (
     filters
 )
 
-from loguru import logger as log
-
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 
 def main():
     logger.initialize_logger()
     log.info("Logger initialized")
+
+    try:
+        import credentials
+    except ImportError:
+        log.warning("Credentials file not found! Please set credentials environ manually.")
 
     database.initialize_database_session()
     log.info("Database session initialized")
