@@ -4,6 +4,11 @@ import env
 import handlers
 from loguru import logger as log
 
+try:
+    import credentials
+except ImportError:
+    log.warning("Credentials file not found! Please set credentials environ manually.")
+
 from functions import (
     database,
     logger,
@@ -23,11 +28,6 @@ TOKEN = os.getenv("TELEGRAM_TOKEN")
 def main():
     logger.initialize_logger()
     log.info("Logger initialized")
-
-    try:
-        import credentials
-    except ImportError:
-        log.warning("Credentials file not found! Please set credentials environ manually.")
 
     database.initialize_database_session()
     log.info("Database session initialized")
