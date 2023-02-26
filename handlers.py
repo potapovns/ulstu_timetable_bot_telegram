@@ -1,6 +1,8 @@
 import os.path
 import env
 
+from loguru import logger as log
+
 try:
     import credentials
 except ImportError:
