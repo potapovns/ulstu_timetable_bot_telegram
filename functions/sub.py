@@ -2,15 +2,30 @@ import os
 import datetime
 
 import timetable_themes
+from functions import configuration, my_api
+from data.timetables import Timetable
 from data.groups import Group
 from data.images import Image
-from data.timetables import Timetable
 from data.users import User
-from functions import configuration, my_api
-
+from data import db_session
 from loguru import logger as log
 
 import TimetableToImage
+
+
+def db_groups_add_new(groups_dict):
+    db_sess = db_session.create_session()
+    db_groups_all = db_sess.query(Group).all()
+    db_groups_all_names = [db_group.name for db_group in db_groups_all]
+    for user_group_name, db_group_name in groups_dict.items():
+        if db_group_name not in db_groups_all_names:
+            new_group = Group()
+            new_group.name = db_group_name
+            new_group.name_lower = user_group_name.lower()
+            db_sess.add(new_group)
+            log.debug(f"New group added: {new_group}")
+    db_sess.commit()
+    db_sess.close()
 
 
 def get_week_number(first_week_start_date, target_date: datetime.date):

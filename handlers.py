@@ -244,10 +244,10 @@ async def try_get_week(update: Update, context: ContextTypes.DEFAULT_TYPE, week)
                                         "Пожалуйста, повторите попытку позже...")
     else:
         db_image_path = os.path.join(
-                    os.getcwd(),
-                    config["images_config"]["folder"],
-                    db_image.filename
-                )
+            os.getcwd(),
+            config["images_config"]["folder"],
+            db_image.filename
+        )
         if not os.path.exists(db_image_path):
             db_sess.delete(db_image)
             db_sess.commit()

@@ -2,7 +2,7 @@
   "database_config": {
     "drivername": "postgresql",
     "port": "5432",
-    "host": "localhost",
+    "host": "uran.local",
     "database": "ulstu-timetable-telegram"
   },
   "semesters_config": {
