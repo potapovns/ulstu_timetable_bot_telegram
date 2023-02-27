@@ -1,7 +1,7 @@
 import unittest
 
 
-class FlaskAppTests(unittest.TestCase):
+class Tests(unittest.TestCase):
 
     def test_pass(self):
         self.assertEqual(True, True)
