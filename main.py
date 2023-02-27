@@ -1,6 +1,6 @@
 import os
-
 import env
+import time
 import handlers
 from loguru import logger as log
 
@@ -26,6 +26,9 @@ TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 
 def main():
+    os.environ['TZ'] = 'Europe/Samara'
+    time.tzset()
+
     logger.initialize_logger()
     log.info("Logger initialized")
 
