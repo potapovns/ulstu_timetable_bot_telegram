@@ -26,8 +26,11 @@ TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 
 def main():
-    os.environ['TZ'] = 'Europe/Samara'
-    time.tzset()
+    try:
+        os.environ['TZ'] = 'Europe/Samara'
+        time.tzset()
+    except Exception as e:
+        log.warning("Timezone isn`t set! Please set timezone")
 
     logger.initialize_logger()
     log.info("Logger initialized")
